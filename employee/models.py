@@ -22,8 +22,6 @@ class Profile(models.Model):
         Department, on_delete=models.CASCADE, verbose_name=u'แผนก')
     shift_id = models.OneToOneField(
         Shift, on_delete=models.CASCADE, verbose_name=u'ข้อมูลเข้างาน')
-    organiz_id = models.OneToOneField(
-        Organization, on_delete=models.CASCADE, verbose_name=u'องค์กร/หัวหน้างาน')
     edu_id = models.OneToOneField(
         Educationals, on_delete=models.CASCADE, verbose_name=u'ระดับการศึกษา')
     empcode = models.CharField(
