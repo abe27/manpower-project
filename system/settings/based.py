@@ -37,6 +37,17 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # custimize module
+    'master.apps.MasterConfig',
+    'timeattendance.apps.TimeattendanceConfig',
+    'regional.apps.RegionalConfig',
+    'employee.apps.EmployeeConfig',
+    'leave.apps.LeaveConfig',
+    'overtime.apps.OvertimeConfig',
+    'evaluation.apps.EvaluationConfig',
+    'training.apps.TrainingConfig',
+    'accident.apps.AccidentConfig',
+    'webboard.apps.WebboardConfig',
 ]
 
 MIDDLEWARE = [
