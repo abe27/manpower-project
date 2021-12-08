@@ -2,7 +2,7 @@ from django.db import models
 from django.contrib.auth.models import User
 import uuid
 
-from master.models import STATUS_APPROVE_CHOICES, STATUS_CHOICES, STATUS_EXPLOIT_CHOICES, Department, Educationals, Organization, Position, Section, Shift
+from master.models import STATUS_APPROVE_CHOICES, STATUS_CHOICES, STATUS_EXPLOIT_CHOICES, Department, Educationals, Position, Section, Shift
 from regional.models import ZipCode
 
 
@@ -104,14 +104,14 @@ class Profile(models.Model):
     # #####
     salary = models.DecimalField(null=True,
                                  decimal_places=18,
-                                 max_digits=44, default=0, verbose_name=u'เงินเดิน')
+                                 max_digits=44, default=0, verbose_name=u'เงินเดือน')
     avatar = models.FileField(blank=True, null=True,
                               verbose_name=u'รูปประจำตัว')
     signature = models.FileField(
         blank=True, null=True, verbose_name=u'ลายเซนต์')
 
-    is_passed = models.BooleanField(
-        choices=[(False, 'ยังไม่ผ่านการประเมิน'), (True, 'ผ่านการประเมินเรียบร้อยแล้ว')], default=False, verbose_name=u'สถานะการทำงาน')
+    is_passed = models.CharField(max_length=1,
+                                 choices=[('-', 'ยังไม่ผ่านการประเมิน'), ('P', 'ผ่านการประเมินเรียบร้อยแล้ว'), ('R', 'พ้นจากเป็นพนักงาน')], default='-', verbose_name=u'สถานะการทำงาน')
     active = models.BooleanField(
         choices=STATUS_CHOICES, default=False, verbose_name=u'สถานะ')
     created_at = models.DateTimeField(
