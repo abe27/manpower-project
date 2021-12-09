@@ -12,7 +12,7 @@ CHOICES_ASWER = [(False, 'ไม่ถูก'), (True, 'ถูก')]
 
 class TrainingRoom(models.Model):
     id = models.UUIDField(
-        primary_key=True, default=uuid.uuid4(), editable=False)
+        primary_key=True, default=uuid.uuid4, editable=False)
     title = models.CharField(
         max_length=255, unique=True, verbose_name=u'หัวข้อ')
     descriptions = RichTextField(blank=True, verbose_name=u'รายละเอียด')
@@ -35,7 +35,7 @@ class TrainingRoom(models.Model):
 
 class Trainer(models.Model):
     id = models.UUIDField(
-        primary_key=True, default=uuid.uuid4(), editable=False)
+        primary_key=True, default=uuid.uuid4, editable=False)
     company = models.CharField(
         max_length=255, unique=True, verbose_name=u'บริษัท')
     position = models.OneToOneField(
@@ -64,7 +64,7 @@ class Trainer(models.Model):
 
 class Training(models.Model):
     id = models.UUIDField(
-        primary_key=True, default=uuid.uuid4(), editable=False)
+        primary_key=True, default=uuid.uuid4, editable=False)
     room_id = models.OneToOneField(
         TrainingRoom, on_delete=models.CASCADE, verbose_name="ห้องที่อบรม")
     subject = models.CharField(
@@ -92,7 +92,7 @@ class Training(models.Model):
 
 class ImagesTraining(models.Model):
     id = models.UUIDField(
-        primary_key=True, default=uuid.uuid4(), editable=False)
+        primary_key=True, default=uuid.uuid4, editable=False)
     training_id = models.ForeignKey(
         Training, on_delete=models.CASCADE, verbose_name=u'หัวข้อ')
     image = models.FileField(verbose_name=u'รูปประกอบ')
@@ -111,7 +111,7 @@ class ImagesTraining(models.Model):
 
 class TrainingDetail(models.Model):
     id = models.UUIDField(
-        primary_key=True, default=uuid.uuid4(), editable=False)
+        primary_key=True, default=uuid.uuid4, editable=False)
     training_id = models.OneToOneField(
         Training, on_delete=models.CASCADE, verbose_name="หัวข้อมที่อบรม")
     profile_id = models.OneToOneField(
@@ -137,7 +137,7 @@ class TrainingDetail(models.Model):
 
 class Squize(models.Model):
     id = models.UUIDField(
-        primary_key=True, default=uuid.uuid4(), editable=False)
+        primary_key=True, default=uuid.uuid4, editable=False)
     training_id = models.ForeignKey(
         Training, on_delete=models.CASCADE, verbose_name="หัวข้ออบรม")
     title = models.CharField(max_length=255, verbose_name=u'หัวข้อ')
@@ -160,7 +160,7 @@ class Squize(models.Model):
 
 class ImagesSquize(models.Model):
     id = models.UUIDField(
-        primary_key=True, default=uuid.uuid4(), editable=False)
+        primary_key=True, default=uuid.uuid4, editable=False)
     squize_id = models.ForeignKey(
         Squize, on_delete=models.CASCADE, verbose_name=u'หัวข้อ')
     image = models.ImageField(null=True, blank=True, verbose_name=u'รูปประกอบ')
@@ -179,7 +179,7 @@ class ImagesSquize(models.Model):
 
 class SquizeDetail(models.Model):
     id = models.UUIDField(
-        primary_key=True, default=uuid.uuid4(), editable=False)
+        primary_key=True, default=uuid.uuid4, editable=False)
     training_id = models.ForeignKey(
         Squize, on_delete=models.CASCADE, verbose_name="แบบทดสอบ")
     title = models.CharField(max_length=255, verbose_name=u'คำถาม')
@@ -202,7 +202,7 @@ class SquizeDetail(models.Model):
 
 class SquizeChoice(models.Model):
     id = models.UUIDField(
-        primary_key=True, default=uuid.uuid4(), editable=False)
+        primary_key=True, default=uuid.uuid4, editable=False)
     training_id = models.ForeignKey(
         SquizeDetail, on_delete=models.CASCADE, verbose_name="คำถาม")
     title = models.CharField(max_length=255, verbose_name=u'คำตอบ')
@@ -227,7 +227,7 @@ class SquizeChoice(models.Model):
 
 class EmployeeTester(models.Model):
     id = models.UUIDField(
-        primary_key=True, default=uuid.uuid4(), editable=False)
+        primary_key=True, default=uuid.uuid4, editable=False)
     training_id = models.OneToOneField(
         Training, on_delete=models.CASCADE, verbose_name=u'หัวข้อการอบรม')
     profile_id = models.OneToOneField(
@@ -254,7 +254,7 @@ class EmployeeTester(models.Model):
 
 class EmployeeTesterDetail(models.Model):
     id = models.UUIDField(
-        primary_key=True, default=uuid.uuid4(), editable=False)
+        primary_key=True, default=uuid.uuid4, editable=False)
     profile_id = models.OneToOneField(
         EmployeeTester, on_delete=models.CASCADE, verbose_name="หัวข้อการอบรม")
     squize_id = models.OneToOneField(

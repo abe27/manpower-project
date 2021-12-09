@@ -10,7 +10,7 @@ from regional.models import ZipCode
 # Create your models here.
 class Profile(models.Model):
     id = models.UUIDField(
-        primary_key=True, default=uuid.uuid4(), editable=False)
+        primary_key=True, default=uuid.uuid4, editable=False)
     user_id = models.OneToOneField(
         User, on_delete=models.CASCADE, verbose_name=u'ผู้ใช้งาน')
     zipcode_id = models.OneToOneField(
@@ -128,7 +128,7 @@ class Profile(models.Model):
 
 class Permision(models.Model):
     id = models.UUIDField(
-        primary_key=True, default=uuid.uuid4(), editable=False)
+        primary_key=True, default=uuid.uuid4, editable=False)
     user_id = models.OneToOneField(
         Profile, on_delete=models.CASCADE, verbose_name=u'ผู้ใช้งาน')
     descriptions = RichTextField(blank=True, verbose_name=u'รายละเอียด')

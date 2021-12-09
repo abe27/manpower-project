@@ -10,7 +10,7 @@ from master.models import STATUS_APPROVE_CHOICES, STATUS_CHOICES
 
 class OverTime(models.Model):
     id = models.UUIDField(
-        primary_key=True, default=uuid.uuid4(), editable=False)
+        primary_key=True, default=uuid.uuid4, editable=False)
     profile = models.OneToOneField(
         Profile, on_delete=models.CASCADE, verbose_name=u'ชื่อพนักงาน')
     subject = models.CharField(

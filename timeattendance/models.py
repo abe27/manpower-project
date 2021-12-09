@@ -10,7 +10,7 @@ from master.models import STATUS_APPROVE_CHOICES, STATUS_CHOICES
 
 class TimeAttendModel(models.Model):
     id = models.UUIDField(
-        primary_key=True, default=uuid.uuid4(), editable=False)
+        primary_key=True, default=uuid.uuid4, editable=False)
     user_id = models.OneToOneField(
         Profile, on_delete=models.CASCADE, verbose_name=u'พนักงาน')
     record_in = models.DateTimeField(
@@ -36,7 +36,7 @@ class TimeAttendModel(models.Model):
 
 class ImageTimeAttendance(models.Model):
     id = models.UUIDField(
-        primary_key=True, default=uuid.uuid4(), editable=False)
+        primary_key=True, default=uuid.uuid4, editable=False)
     training_id = models.ForeignKey(
         TimeAttendModel, on_delete=models.CASCADE, verbose_name=u'หัวข้อ')
     image = models.ImageField(null=True, blank=True)

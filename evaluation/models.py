@@ -12,7 +12,7 @@ CHOICES_PASS_OR_NOT = [('-', '-'), ('N', 'ไม่ผ่าน'), ('P', 'ผ่
 
 class EvaluationGroup(models.Model):
     id = models.UUIDField(
-        primary_key=True, default=uuid.uuid4(), editable=False)
+        primary_key=True, default=uuid.uuid4, editable=False)
     title = models.CharField(
         max_length=255, unique=True, verbose_name=u'หัวข้อ')
     descriptions = RichTextField(blank=True, verbose_name=u'รายละเอียด')
@@ -31,7 +31,7 @@ class EvaluationGroup(models.Model):
 
 class EvaluationLength(models.Model):
     id = models.UUIDField(
-        primary_key=True, default=uuid.uuid4(), editable=False)
+        primary_key=True, default=uuid.uuid4, editable=False)
     evaluate_group = models.OneToOneField(
         EvaluationGroup, on_delete=models.CASCADE, verbose_name=u'ประเภทการการประเมิน')
     title = models.CharField(
@@ -54,7 +54,7 @@ class EvaluationLength(models.Model):
 
 class Evaluation(models.Model):
     id = models.UUIDField(
-        primary_key=True, default=uuid.uuid4(), editable=False)
+        primary_key=True, default=uuid.uuid4, editable=False)
     evaluate_group = models.OneToOneField(
         EvaluationGroup, on_delete=models.CASCADE, verbose_name=u'ประเภทการการประเมิน')
     title = models.CharField(
@@ -77,7 +77,7 @@ class Evaluation(models.Model):
 
 class EvaluationDetail(models.Model):
     id = models.UUIDField(
-        primary_key=True, default=uuid.uuid4(), editable=False)
+        primary_key=True, default=uuid.uuid4, editable=False)
     evaluate_id = models.OneToOneField(
         Evaluation, on_delete=models.CASCADE, verbose_name=u'หัวข้อการประเมิน')
     title = models.CharField(
@@ -98,7 +98,7 @@ class EvaluationDetail(models.Model):
 
 class Evaluated(models.Model):
     id = models.UUIDField(
-        primary_key=True, default=uuid.uuid4(), editable=False)
+        primary_key=True, default=uuid.uuid4, editable=False)
     evaluate_id = models.OneToOneField(
         Evaluation, on_delete=models.CASCADE, verbose_name=u'หัวข้อการประเมิน')
     profile_id = models.OneToOneField(
@@ -130,7 +130,7 @@ class Evaluated(models.Model):
 
 class EvaluatedDetail(models.Model):
     id = models.UUIDField(
-        primary_key=True, default=uuid.uuid4(), editable=False)
+        primary_key=True, default=uuid.uuid4, editable=False)
     profile_id = models.OneToOneField(
         Evaluated, on_delete=models.CASCADE, verbose_name=u'พนักงานที่ถูกประเมิน')
     evaluate_id = models.OneToOneField(

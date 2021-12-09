@@ -10,7 +10,7 @@ from master.models import STATUS_CHOICES, Whs
 
 class AccidentGroup(models.Model):
     id = models.UUIDField(
-        primary_key=True, default=uuid.uuid4(), editable=False)
+        primary_key=True, default=uuid.uuid4, editable=False)
     accident_type = models.CharField(max_length=1, choices=[(
         'C', 'Corrective'), ('D', 'Defective')], verbose_name=u'ประภท')
     title = models.CharField(max_length=255, blank=True,
@@ -31,7 +31,7 @@ class AccidentGroup(models.Model):
 
 class Accident(models.Model):
     id = models.UUIDField(
-        primary_key=True, default=uuid.uuid4(), editable=False)
+        primary_key=True, default=uuid.uuid4, editable=False)
     whs_id = models.OneToOneField(
         Whs, blank=True, null=True, on_delete=models.SET_NULL, verbose_name=u'พื้นที่เกิดอุบัติเหตุ')
     profile_id = models.OneToOneField(
@@ -59,7 +59,7 @@ class Accident(models.Model):
 
 class ImagesAccident(models.Model):
     id = models.UUIDField(
-        primary_key=True, default=uuid.uuid4(), editable=False)
+        primary_key=True, default=uuid.uuid4, editable=False)
     training_id = models.ForeignKey(
         Accident, on_delete=models.CASCADE, verbose_name=u'หัวข้อ')
     image = models.FileField(verbose_name=u'รูป/เอกสารประกอบ')
@@ -78,7 +78,7 @@ class ImagesAccident(models.Model):
 
 class ApproveAccident(models.Model):
     id = models.UUIDField(
-        primary_key=True, default=uuid.uuid4(), editable=False)
+        primary_key=True, default=uuid.uuid4, editable=False)
     profile_id = models.OneToOneField(
         Profile, blank=True, null=True, on_delete=models.SET_NULL, verbose_name=u'ผู้รับเรื่อง')
     accident_id = models.ForeignKey(

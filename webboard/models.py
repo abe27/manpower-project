@@ -10,7 +10,7 @@ from master.models import STATUS_CHOICES, Categories
 
 class Post(models.Model):
     id = models.UUIDField(
-        primary_key=True, default=uuid.uuid4(), editable=False)
+        primary_key=True, default=uuid.uuid4, editable=False)
     category_id = models.ForeignKey(
         Categories, on_delete=models.SET_NULL, blank=True, null=True, verbose_name=u'หมวดหมู่')
     created_by = models.OneToOneField(
@@ -41,7 +41,7 @@ class Post(models.Model):
 
 class Comment(models.Model):
     id = models.UUIDField(
-        primary_key=True, default=uuid.uuid4(), editable=False)
+        primary_key=True, default=uuid.uuid4, editable=False)
     post_id = models.ForeignKey(
         Post, on_delete=models.SET_NULL, blank=True, null=True, verbose_name=u'หัวข้อ/เรื่อง')
     comment_by = models.OneToOneField(
@@ -66,7 +66,7 @@ class Comment(models.Model):
 
 class Reply(models.Model):
     id = models.UUIDField(
-        primary_key=True, default=uuid.uuid4(), editable=False)
+        primary_key=True, default=uuid.uuid4, editable=False)
     post_id = models.ForeignKey(
         Comment, on_delete=models.SET_NULL, blank=True, null=True, verbose_name=u'หัวข้อ/เรื่อง')
     reply_by = models.OneToOneField(

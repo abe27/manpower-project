@@ -9,7 +9,7 @@ from master.models import STATUS_CHOICES, Department
 
 class ActivitiesCategories(models.Model):
     id = models.UUIDField(
-        primary_key=True, default=uuid.uuid4(), editable=False)
+        primary_key=True, default=uuid.uuid4, editable=False)
     title = models.CharField(max_length=255, verbose_name=u'หัวข้อหมวดหมู่')
     descriptions = RichTextField(
         blank=True, null=True, verbose_name=u'รายละเอียด/ข้อมูลเพิ่มเติม')
@@ -28,7 +28,7 @@ class ActivitiesCategories(models.Model):
 
 class ActivitiesChoise(models.Model):
     id = models.UUIDField(
-        primary_key=True, default=uuid.uuid4(), editable=False)
+        primary_key=True, default=uuid.uuid4, editable=False)
     category_id = models.OneToOneField(
         ActivitiesCategories, on_delete=models.SET_NULL, blank=True, null=True, verbose_name=u'หมวดหมู่')
     title = models.CharField(max_length=255, verbose_name=u'หัวข้อ/เรื่อง')
@@ -51,7 +51,7 @@ class ActivitiesChoise(models.Model):
 
 class ActivitiesForOrganization(models.Model):
     id = models.UUIDField(
-        primary_key=True, default=uuid.uuid4(), editable=False)
+        primary_key=True, default=uuid.uuid4, editable=False)
     activities_id = models.OneToOneField(
         ActivitiesChoise, on_delete=models.SET_NULL, blank=True, null=True, verbose_name=u'หัวข้อ/เรื่อง')
     department_id = models.ForeignKey(
@@ -73,7 +73,7 @@ class ActivitiesForOrganization(models.Model):
 
 class ActivitiesCleanup(models.Model):
     id = models.UUIDField(
-        primary_key=True, default=uuid.uuid4(), editable=False)
+        primary_key=True, default=uuid.uuid4, editable=False)
     activities_date = models.DateField(verbose_name='วันที่ทำกิจกรรม')
     activities_id = models.OneToOneField(
         ActivitiesForOrganization, on_delete=models.SET_NULL, blank=True, null=True, verbose_name=u'หัวข้อ/เรื่อง')
@@ -96,7 +96,7 @@ class ActivitiesCleanup(models.Model):
 
 class ImagesActivites(models.Model):
     id = models.UUIDField(
-        primary_key=True, default=uuid.uuid4(), editable=False)
+        primary_key=True, default=uuid.uuid4, editable=False)
     squize_id = models.ForeignKey(
         ActivitiesCleanup, on_delete=models.CASCADE, verbose_name=u'หัวข้อ')
     image = models.FileField(verbose_name=u'รูปประกอบ')

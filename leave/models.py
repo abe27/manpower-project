@@ -19,7 +19,7 @@ STATUS_SENDMAIL_CHOICES = [
 
 class Leave(models.Model):
     id = models.UUIDField(
-        primary_key=True, default=uuid.uuid4(), editable=False)
+        primary_key=True, default=uuid.uuid4, editable=False)
     user_id = models.OneToOneField(
         Profile, on_delete=models.CASCADE, verbose_name=u'ชื่อพนักงาน')
     leave_type_id = models.OneToOneField(
@@ -67,7 +67,7 @@ class Leave(models.Model):
 
 class AttachmentLeave(models.Model):
     id = models.UUIDField(
-        primary_key=True, default=uuid.uuid4(), editable=False)
+        primary_key=True, default=uuid.uuid4, editable=False)
     leave_id = models.ForeignKey(
         Leave, on_delete=models.CASCADE, verbose_name=u'หัวข้อการลา')
     attachment = models.FileField(verbose_name=u'เอกสารประกอบการลา')

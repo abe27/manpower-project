@@ -24,7 +24,7 @@ STATUS_EXPLOIT_CHOICES = [
 
 class Whs(models.Model):
     id = models.UUIDField(
-        primary_key=True, default=uuid.uuid4(), editable=False)
+        primary_key=True, default=uuid.uuid4, editable=False)
     title = models.CharField(
         max_length=255, unique=True, verbose_name=u'หัวข้อ')
     descriptions = RichTextField(blank=True, verbose_name=u'รายละเอียด')
@@ -36,7 +36,7 @@ class Whs(models.Model):
         auto_now=True, verbose_name=u'แก้ไขเมื่อ')
 
     def __str__(self):
-        return self.id
+        return self.title
 
     class Meta:
         # abstract = True
@@ -46,7 +46,7 @@ class Whs(models.Model):
 
 class Position(models.Model):
     id = models.UUIDField(
-        primary_key=True, default=uuid.uuid4(), editable=False)
+        primary_key=True, default=uuid.uuid4, editable=False)
     title = models.CharField(
         max_length=255, unique=True, verbose_name=u'หัวข้อ')
     descriptions = RichTextField(blank=True, verbose_name=u'รายละเอียด')
@@ -65,7 +65,7 @@ class Position(models.Model):
 
 class Section(models.Model):
     id = models.UUIDField(
-        primary_key=True, default=uuid.uuid4(), editable=False)
+        primary_key=True, default=uuid.uuid4, editable=False)
     title = models.CharField(
         max_length=255, unique=True, verbose_name=u'หัวข้อ')
     descriptions = RichTextField(blank=True, verbose_name=u'รายละเอียด')
@@ -84,7 +84,7 @@ class Section(models.Model):
 
 class Department(models.Model):
     id = models.UUIDField(
-        primary_key=True, default=uuid.uuid4(), editable=False)
+        primary_key=True, default=uuid.uuid4, editable=False)
     title = models.CharField(
         max_length=255, unique=True, verbose_name=u'หัวข้อ')
     descriptions = RichTextField(blank=True, verbose_name=u'รายละเอียด')
@@ -103,7 +103,7 @@ class Department(models.Model):
 
 class Shift(models.Model):
     id = models.UUIDField(
-        primary_key=True, default=uuid.uuid4(), editable=False)
+        primary_key=True, default=uuid.uuid4, editable=False)
     title = models.CharField(
         max_length=255, unique=True, verbose_name=u'หัวข้อ')  # A/B/S
     descriptions = RichTextField(blank=True, verbose_name=u'รายละเอียด')
@@ -129,7 +129,7 @@ class Shift(models.Model):
 # customize organize
 class Organization(models.Model):
     id = models.UUIDField(
-        primary_key=True, default=uuid.uuid4(), editable=False)
+        primary_key=True, default=uuid.uuid4, editable=False)
     profile_id = models.ForeignKey(
         User, on_delete=models.CASCADE, verbose_name=u'ผู้รับผิดชอบ')
     position_id = models.ForeignKey(
@@ -164,7 +164,7 @@ class Organization(models.Model):
 
 class OrganizationDetail(models.Model):
     id = models.UUIDField(
-        primary_key=True, default=uuid.uuid4(), editable=False)
+        primary_key=True, default=uuid.uuid4, editable=False)
     organize_id = models.ForeignKey(
         Organization, on_delete=models.CASCADE, verbose_name=u"ข้อมูลองค์กร")
     profile_id = models.ForeignKey(
@@ -188,7 +188,7 @@ class OrganizationDetail(models.Model):
 
 class Educationals(models.Model):
     id = models.UUIDField(
-        primary_key=True, default=uuid.uuid4(), editable=False)
+        primary_key=True, default=uuid.uuid4, editable=False)
     title = models.CharField(
         max_length=255, unique=True, verbose_name=u'หัวข้อ')
     descriptions = RichTextField(blank=True, verbose_name=u'รายละเอียด')
@@ -207,7 +207,7 @@ class Educationals(models.Model):
 
 class LeaveType(models.Model):
     id = models.UUIDField(
-        primary_key=True, default=uuid.uuid4(), editable=False)
+        primary_key=True, default=uuid.uuid4, editable=False)
     title = models.CharField(
         max_length=255, unique=True, verbose_name=u'หัวข้อ')
     descriptions = RichTextField(blank=True, verbose_name=u'รายละเอียด')
@@ -226,7 +226,7 @@ class LeaveType(models.Model):
 
 class CompanyCalendar(models.Model):
     id = models.UUIDField(
-        primary_key=True, default=uuid.uuid4(), editable=False)
+        primary_key=True, default=uuid.uuid4, editable=False)
     on_date = models.DateField(verbose_name=u'วันที่')
     title = models.CharField(
         max_length=255, unique=True, verbose_name=u'หัวข้อ')
@@ -246,7 +246,7 @@ class CompanyCalendar(models.Model):
 
 class Categories(models.Model):
     id = models.UUIDField(
-        primary_key=True, default=uuid.uuid4(), editable=False)
+        primary_key=True, default=uuid.uuid4, editable=False)
     title = models.CharField(
         max_length=255, unique=True, verbose_name=u'หัวข้อ')
     descriptions = RichTextField(blank=True, verbose_name=u'รายละเอียด')

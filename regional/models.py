@@ -9,7 +9,7 @@ from employee.models import STATUS_CHOICES
 
 class Province(models.Model):
     id = models.UUIDField(
-        primary_key=True, default=uuid.uuid4(), editable=False)
+        primary_key=True, default=uuid.uuid4, editable=False)
     code = models.CharField(
         max_length=255, unique=True, verbose_name=u'รหัส')
     province = models.CharField(
@@ -36,7 +36,7 @@ class Province(models.Model):
 
 class District(models.Model):
     id = models.UUIDField(
-        primary_key=True, default=uuid.uuid4(), editable=False)
+        primary_key=True, default=uuid.uuid4, editable=False)
     province_id = models.OneToOneField(
         Province, on_delete=models.CASCADE, verbose_name='จังหวัด')
     district = models.CharField(
@@ -63,7 +63,7 @@ class District(models.Model):
 
 class ZipCode(models.Model):
     id = models.UUIDField(
-        primary_key=True, default=uuid.uuid4(), editable=False)
+        primary_key=True, default=uuid.uuid4, editable=False)
     district_id = models.OneToOneField(
         District, on_delete=models.CASCADE, verbose_name='จังหวัด')
     zipcode = models.CharField(
