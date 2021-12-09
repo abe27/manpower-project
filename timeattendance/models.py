@@ -49,4 +49,4 @@ class ImageTimeAttendance(models.Model):
     class Meta:
         # abstract = True
         verbose_name_plural = u'ข้อมูลรูปภาพประกอบบันทึกเวลาเข้าทำงาน'
-        db_table = "tbt_illustrationtimeattendances"
+        db_table = "tbt_imagetimeattendances"

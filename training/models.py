@@ -173,7 +173,7 @@ class ImagesSquize(models.Model):
     class Meta:
         # abstract = True
         verbose_name_plural = u'ข้อมูลรูปภาพประกอบการอบรม'
-        db_table = "tbt_illustrationtrainings"
+        db_table = "tbt_imagetrainings"
 
 
 class SquizeDetail(models.Model):
