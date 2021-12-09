@@ -1,3 +1,4 @@
+from ckeditor.fields import RichTextField
 from django.db import models
 import uuid
 from employee.models import Profile
@@ -14,7 +15,7 @@ class AccidentGroup(models.Model):
         'C', 'Corrective'), ('D', 'Defective')], verbose_name=u'ประภท')
     title = models.CharField(max_length=255, blank=True,
                              null=True, verbose_name=u'หัวข้อ')
-    descriptions = models.TextField(blank=True, verbose_name=u'รายละเอียด')
+    descriptions = RichTextField(blank=True, verbose_name=u'รายละเอียด')
     active = models.BooleanField(
         choices=STATUS_CHOICES, default=False, verbose_name=u'สถานะ')
     created_at = models.DateTimeField(
@@ -41,7 +42,7 @@ class Accident(models.Model):
                              null=True, verbose_name=u'หัวข้อ')
     on_date = models.DateField(verbose_name=u'วันที่')
     on_time = models.TimeField(verbose_name=u'เวลา')
-    descriptions = models.TextField(
+    descriptions = RichTextField(
         blank=True, verbose_name=u'รายละเอียด/ข้อมูลเพิ่มเติม')
     active = models.BooleanField(
         choices=STATUS_CHOICES, default=False, verbose_name=u'สถานะ')
@@ -82,7 +83,7 @@ class ApproveAccident(models.Model):
         Profile, blank=True, null=True, on_delete=models.SET_NULL, verbose_name=u'ผู้รับเรื่อง')
     accident_id = models.ForeignKey(
         Accident, on_delete=models.CASCADE, verbose_name="หัวข้ออุบัติเหติ")
-    descriptions = models.TextField(
+    descriptions = RichTextField(
         blank=True, null=True, verbose_name=u'แนวทางแก้/ข้อเสนอแนะ')
     is_approve = models.BooleanField(choices=[(
         False, '-'), (True, 'รับทราบ')], blank=True, null=True, default=False, verbose_name=u'รับทราบ')

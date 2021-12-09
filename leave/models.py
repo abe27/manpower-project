@@ -1,3 +1,4 @@
+from ckeditor.fields import RichTextField
 from django.db import models
 import uuid
 from employee.models import Profile
@@ -27,7 +28,7 @@ class Leave(models.Model):
     from_time = models.TimeField(verbose_name=u'เริ่มจากเวลา')
     to_time = models.TimeField(verbose_name=u'ถึงเวลา')
     reason = models.TextField(verbose_name=u'สาเหตุที่ลา/เหตุผล')
-    description = models.TextField(
+    descriptions = RichTextField(
         blank=True, null=True, default='-', verbose_name=u'ข้อมูลเพิ่มเติม')
     total_leave = models.DecimalField(
         null=True, decimal_places=18, max_digits=44, default=0, verbose_name=u'ผลรวม')

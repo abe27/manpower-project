@@ -1,3 +1,4 @@
+from ckeditor.fields import RichTextField
 from django.db import models
 import uuid
 
@@ -14,7 +15,7 @@ class EvaluationGroup(models.Model):
         primary_key=True, default=uuid.uuid4(), editable=False)
     title = models.CharField(
         max_length=255, unique=True, verbose_name=u'หัวข้อ')
-    descriptions = models.TextField(blank=True, verbose_name=u'รายละเอียด')
+    descriptions = RichTextField(blank=True, verbose_name=u'รายละเอียด')
     active = models.BooleanField(
         choices=STATUS_CHOICES, default=False, verbose_name=u'สถานะ')
     created_at = models.DateTimeField(
@@ -35,7 +36,7 @@ class EvaluationLength(models.Model):
         EvaluationGroup, on_delete=models.CASCADE, verbose_name=u'ประเภทการการประเมิน')
     title = models.CharField(
         max_length=255, unique=True, verbose_name=u'หัวข้อ')
-    descriptions = models.TextField(blank=True, verbose_name=u'รายละเอียด')
+    descriptions = RichTextField(blank=True, verbose_name=u'รายละเอียด')
     score = models.DecimalField(
         blank=True, decimal_places=18, max_digits=44, default=0.0, verbose_name=u'ช่วงคะแนน')
     active = models.BooleanField(
@@ -58,7 +59,7 @@ class Evaluation(models.Model):
         EvaluationGroup, on_delete=models.CASCADE, verbose_name=u'ประเภทการการประเมิน')
     title = models.CharField(
         max_length=255, unique=True, verbose_name=u'หัวข้อ')
-    descriptions = models.TextField(blank=True, verbose_name=u'รายละเอียด')
+    descriptions = RichTextField(blank=True, verbose_name=u'รายละเอียด')
     score = models.DecimalField(
         blank=True, decimal_places=18, max_digits=44, default=0.0, verbose_name=u'คะแนนเต็ม')
     active = models.BooleanField(
@@ -81,7 +82,7 @@ class EvaluationDetail(models.Model):
         Evaluation, on_delete=models.CASCADE, verbose_name=u'หัวข้อการประเมิน')
     title = models.CharField(
         max_length=255, unique=True, verbose_name=u'หัวข้อ')
-    descriptions = models.TextField(blank=True, verbose_name=u'รายละเอียด')
+    descriptions = RichTextField(blank=True, verbose_name=u'รายละเอียด')
     active = models.BooleanField(
         choices=STATUS_CHOICES, default=False, verbose_name=u'สถานะ')
     created_at = models.DateTimeField(

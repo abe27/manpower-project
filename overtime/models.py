@@ -1,3 +1,4 @@
+from ckeditor.fields import RichTextField
 from django.db import models
 import uuid
 from employee.models import Profile
@@ -16,7 +17,7 @@ class OverTime(models.Model):
         max_length=255, verbose_name=u'หัวข้อ')
     from_datetime = models.DateTimeField(verbose_name=u'วันที่เริ่ม')
     to_datetime = models.DateTimeField(verbose_name=u'สิ้นสุดที่')
-    descriptions = models.TextField(blank=True, verbose_name=u'รายละเอียด')
+    descriptions = RichTextField(blank=True, verbose_name=u'รายละเอียด')
     is_holiday = models.BooleanField(choices=STATUS_APPROVE_CHOICES,
                                      blank=True, default=False, verbose_name=u'วันหยุดตามปฎิทินของบริษัท', editable=False)
     # ///ตรวจสอบจากข้อมูล calendar ของบริษัท

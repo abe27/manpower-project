@@ -1,4 +1,5 @@
 import uuid
+from ckeditor.fields import RichTextField
 from django.db import models
 from employee.models import Profile
 
@@ -18,7 +19,7 @@ class TimeAttendModel(models.Model):
         blank=True, verbose_name=u'ออกจากที่ทำงานเมื่อ')
     is_change_shift = models.BooleanField(
         choices=STATUS_APPROVE_CHOICES, default=False, blank=True, verbose_name=u'เปลี่ยนกะ')
-    descriptions = models.TextField(
+    descriptions = RichTextField(
         blank=True, verbose_name=u'ข้อมูลเพิ่มเติม')
     active = models.BooleanField(
         choices=STATUS_CHOICES, default=False, verbose_name=u'สถานะ')

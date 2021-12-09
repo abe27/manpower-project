@@ -1,3 +1,4 @@
+from ckeditor.fields import RichTextField
 from django.db import models
 from django.contrib.auth.models import User
 import uuid
@@ -26,7 +27,7 @@ class Whs(models.Model):
         primary_key=True, default=uuid.uuid4(), editable=False)
     title = models.CharField(
         max_length=255, unique=True, verbose_name=u'หัวข้อ')
-    descriptions = models.TextField(blank=True, verbose_name=u'รายละเอียด')
+    descriptions = RichTextField(blank=True, verbose_name=u'รายละเอียด')
     active = models.BooleanField(
         choices=STATUS_CHOICES, default=False, verbose_name=u'สถานะ')
     created_at = models.DateTimeField(
@@ -45,7 +46,7 @@ class Position(models.Model):
         primary_key=True, default=uuid.uuid4(), editable=False)
     title = models.CharField(
         max_length=255, unique=True, verbose_name=u'หัวข้อ')
-    descriptions = models.TextField(blank=True, verbose_name=u'รายละเอียด')
+    descriptions = RichTextField(blank=True, verbose_name=u'รายละเอียด')
     active = models.BooleanField(
         choices=STATUS_CHOICES, default=False, verbose_name=u'สถานะ')
     created_at = models.DateTimeField(
@@ -64,7 +65,7 @@ class Section(models.Model):
         primary_key=True, default=uuid.uuid4(), editable=False)
     title = models.CharField(
         max_length=255, unique=True, verbose_name=u'หัวข้อ')
-    descriptions = models.TextField(blank=True, verbose_name=u'รายละเอียด')
+    descriptions = RichTextField(blank=True, verbose_name=u'รายละเอียด')
     active = models.BooleanField(
         choices=STATUS_CHOICES, default=False, verbose_name=u'สถานะ')
     created_at = models.DateTimeField(
@@ -83,7 +84,7 @@ class Department(models.Model):
         primary_key=True, default=uuid.uuid4(), editable=False)
     title = models.CharField(
         max_length=255, unique=True, verbose_name=u'หัวข้อ')
-    descriptions = models.TextField(blank=True, verbose_name=u'รายละเอียด')
+    descriptions = RichTextField(blank=True, verbose_name=u'รายละเอียด')
     active = models.BooleanField(
         choices=STATUS_CHOICES, default=False, verbose_name=u'สถานะ')
     created_at = models.DateTimeField(
@@ -102,7 +103,7 @@ class Shift(models.Model):
         primary_key=True, default=uuid.uuid4(), editable=False)
     title = models.CharField(
         max_length=255, unique=True, verbose_name=u'หัวข้อ')  # A/B/S
-    descriptions = models.TextField(blank=True, verbose_name=u'รายละเอียด')
+    descriptions = RichTextField(blank=True, verbose_name=u'รายละเอียด')
     time_attendance = models.DecimalField(null=True,
                                           decimal_places=18,
                                           max_digits=44, default=8, verbose_name=u'เวลาทำงาน(ชม.)')
@@ -132,7 +133,7 @@ class Organization(models.Model):
         Position, on_delete=models.CASCADE, verbose_name=u'ตำแหน่ง')
     department_id = models.ForeignKey(
         Department, on_delete=models.CASCADE, verbose_name=u'หัวข้อ/แผนก')
-    descriptions = models.TextField(
+    descriptions = RichTextField(
         blank=True, verbose_name=u'รายละเอียด/ข้อมูลเพิ่มเติม')
     approve_leave = models.BooleanField(choices=STATUS_APPROVE_CHOICES,
                                         blank=True, null=True, default=False, verbose_name=u'อนุมัติการลา')
@@ -167,7 +168,7 @@ class OrganizationDetail(models.Model):
         User, on_delete=models.CASCADE, verbose_name=u'พนักงาน')
     position_id = models.ForeignKey(
         Position, on_delete=models.CASCADE, verbose_name=u'ตำแหน่ง')
-    descriptions = models.TextField(
+    descriptions = RichTextField(
         blank=True, verbose_name=u'รายละเอียด/ข้อมูลเพิ่มเติม')
     active = models.BooleanField(
         choices=STATUS_CHOICES, default=False, verbose_name=u'สถานะ')
@@ -187,7 +188,7 @@ class Educationals(models.Model):
         primary_key=True, default=uuid.uuid4(), editable=False)
     title = models.CharField(
         max_length=255, unique=True, verbose_name=u'หัวข้อ')
-    descriptions = models.TextField(blank=True, verbose_name=u'รายละเอียด')
+    descriptions = RichTextField(blank=True, verbose_name=u'รายละเอียด')
     active = models.BooleanField(
         choices=STATUS_CHOICES, default=False, verbose_name=u'สถานะ')
     created_at = models.DateTimeField(
@@ -206,7 +207,7 @@ class LeaveType(models.Model):
         primary_key=True, default=uuid.uuid4(), editable=False)
     title = models.CharField(
         max_length=255, unique=True, verbose_name=u'หัวข้อ')
-    descriptions = models.TextField(blank=True, verbose_name=u'รายละเอียด')
+    descriptions = RichTextField(blank=True, verbose_name=u'รายละเอียด')
     active = models.BooleanField(
         choices=STATUS_CHOICES, default=False, verbose_name=u'สถานะ')
     created_at = models.DateTimeField(
@@ -226,7 +227,7 @@ class CompanyCalendar(models.Model):
     on_date = models.DateField(verbose_name=u'วันที่')
     title = models.CharField(
         max_length=255, unique=True, verbose_name=u'หัวข้อ')
-    descriptions = models.TextField(blank=True, verbose_name=u'รายละเอียด')
+    descriptions = RichTextField(blank=True, verbose_name=u'รายละเอียด')
     active = models.BooleanField(
         choices=STATUS_CHOICES, default=False, verbose_name=u'สถานะ')
     created_at = models.DateTimeField(
@@ -245,7 +246,7 @@ class Categories(models.Model):
         primary_key=True, default=uuid.uuid4(), editable=False)
     title = models.CharField(
         max_length=255, unique=True, verbose_name=u'หัวข้อ')
-    descriptions = models.TextField(blank=True, verbose_name=u'รายละเอียด')
+    descriptions = RichTextField(blank=True, verbose_name=u'รายละเอียด')
     active = models.BooleanField(
         choices=STATUS_CHOICES, default=False, verbose_name=u'สถานะ')
     created_at = models.DateTimeField(

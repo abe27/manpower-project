@@ -1,3 +1,4 @@
+from ckeditor.fields import RichTextField
 from django.db import models
 from django.contrib.auth.models import User
 import uuid
@@ -26,7 +27,7 @@ class Profile(models.Model):
         Educationals, on_delete=models.CASCADE, verbose_name=u'ระดับการศึกษา')
     empcode = models.CharField(
         max_length=25, unique=True, verbose_name=u'รหัสพนักงาน')
-    description = models.TextField(
+    descriptions = RichTextField(
         blank=True, verbose_name=u'รายละเอียด/เพิ่มเติม')
     address_1 = models.CharField(
         max_length=25, blank=True, verbose_name=u'ที่อยู่ 1')
@@ -130,7 +131,7 @@ class Permision(models.Model):
         primary_key=True, default=uuid.uuid4(), editable=False)
     user_id = models.OneToOneField(
         Profile, on_delete=models.CASCADE, verbose_name=u'ผู้ใช้งาน')
-    descriptions = models.TextField(blank=True, verbose_name=u'รายละเอียด')
+    descriptions = RichTextField(blank=True, verbose_name=u'รายละเอียด')
     is_admin = models.BooleanField(
         choices=STATUS_APPROVE_CHOICES, default=False, verbose_name=u'ผู้ดูแลระบบ')
     is_approve = models.BooleanField(

@@ -1,3 +1,4 @@
+from ckeditor.fields import RichTextField
 from django.db import models
 import uuid
 
@@ -10,7 +11,7 @@ class ActivitiesCategories(models.Model):
     id = models.UUIDField(
         primary_key=True, default=uuid.uuid4(), editable=False)
     title = models.CharField(max_length=255, verbose_name=u'หัวข้อหมวดหมู่')
-    descriptions = models.TextField(
+    descriptions = RichTextField(
         blank=True, null=True, verbose_name=u'รายละเอียด/ข้อมูลเพิ่มเติม')
     active = models.BooleanField(
         choices=STATUS_CHOICES, default=False, verbose_name=u'สถานะ')
@@ -31,7 +32,7 @@ class ActivitiesChoise(models.Model):
     category_id = models.OneToOneField(
         ActivitiesCategories, on_delete=models.SET_NULL, blank=True, null=True, verbose_name=u'หมวดหมู่')
     title = models.CharField(max_length=255, verbose_name=u'หัวข้อ/เรื่อง')
-    descriptions = models.TextField(
+    descriptions = RichTextField(
         blank=True, null=True, verbose_name=u'รายละเอียด/ข้อมูลเพิ่มเติม')
     full_score = models.DecimalField(decimal_places=18, max_digits=44,
                                      blank=True, null=True, default=0, verbose_name='คะแนนเต็ม')
@@ -55,7 +56,7 @@ class ActivitiesForOrganization(models.Model):
         ActivitiesChoise, on_delete=models.SET_NULL, blank=True, null=True, verbose_name=u'หัวข้อ/เรื่อง')
     department_id = models.ForeignKey(
         Department, on_delete=models.CASCADE, verbose_name=u'หัวข้อ/แผนก')
-    descriptions = models.TextField(
+    descriptions = RichTextField(
         blank=True, null=True, verbose_name=u'รายละเอียด/ข้อมูลเพิ่มเติม')
     active = models.BooleanField(
         choices=STATUS_CHOICES, default=False, verbose_name=u'สถานะ')
@@ -76,7 +77,7 @@ class ActivitiesCleanup(models.Model):
     activities_date = models.DateField(verbose_name='วันที่ทำกิจกรรม')
     activities_id = models.OneToOneField(
         ActivitiesForOrganization, on_delete=models.SET_NULL, blank=True, null=True, verbose_name=u'หัวข้อ/เรื่อง')
-    descriptions = models.TextField(
+    descriptions = RichTextField(
         blank=True, null=True, verbose_name=u'รายละเอียด/ข้อมูลเพิ่มเติม')
     score = models.DecimalField(choices=[(0, '0'), (1, '1'), (2, '2'), (3, '3')], decimal_places=18, max_digits=44,
                                 blank=True, null=True, default=0, verbose_name='คะแนนที่ได้')
@@ -98,7 +99,7 @@ class ImagesActivites(models.Model):
         primary_key=True, default=uuid.uuid4(), editable=False)
     squize_id = models.ForeignKey(
         ActivitiesCleanup, on_delete=models.CASCADE, verbose_name=u'หัวข้อ')
-    image = models.FieldFile(verbose_name=u'รูปประกอบ')
+    image = models.FileField(verbose_name=u'รูปประกอบ')
     active = models.BooleanField(
         choices=STATUS_CHOICES, default=False, verbose_name=u'สถานะ')
     created_at = models.DateTimeField(

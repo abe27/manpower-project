@@ -1,4 +1,5 @@
 import uuid
+from ckeditor.fields import RichTextField
 from django.db import models
 
 from employee.models import STATUS_CHOICES
@@ -13,7 +14,7 @@ class Province(models.Model):
         max_length=255, unique=True, verbose_name=u'รหัส')
     province = models.CharField(
         max_length=255, unique=True, verbose_name=u'ชื่อ')
-    descriptions = models.TextField(blank=True, verbose_name=u'รายละเอียด')
+    descriptions = RichTextField(blank=True, verbose_name=u'รายละเอียด')
     latitude = models.DecimalField(null=True,
                                    decimal_places=18,
                                    max_digits=44, default=0, verbose_name=u'ละติจูด')
@@ -40,7 +41,7 @@ class District(models.Model):
         Province, on_delete=models.CASCADE, verbose_name='จังหวัด')
     district = models.CharField(
         max_length=255, unique=True, verbose_name=u'ชื่อ')
-    descriptions = models.TextField(blank=True, verbose_name=u'รายละเอียด')
+    descriptions = RichTextField(blank=True, verbose_name=u'รายละเอียด')
     latitude = models.DecimalField(null=True,
                                    decimal_places=18,
                                    max_digits=44, default=0, verbose_name=u'ละติจูด')
@@ -69,7 +70,7 @@ class ZipCode(models.Model):
         max_length=10, verbose_name=u'รหัสไปรษณีย์')
     tombon = models.CharField(
         max_length=255, verbose_name=u'ตำบล')
-    descriptions = models.TextField(blank=True, verbose_name=u'รายละเอียด')
+    descriptions = RichTextField(blank=True, verbose_name=u'รายละเอียด')
     latitude = models.DecimalField(null=True,
                                    decimal_places=18,
                                    max_digits=44, default=0, verbose_name=u'ละติจูด')

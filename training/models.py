@@ -1,3 +1,4 @@
+from ckeditor.fields import RichTextField
 from django.db import models
 import uuid
 from employee.models import Profile
@@ -14,7 +15,7 @@ class TrainingRoom(models.Model):
         primary_key=True, default=uuid.uuid4(), editable=False)
     title = models.CharField(
         max_length=255, unique=True, verbose_name=u'หัวข้อ')
-    descriptions = models.TextField(blank=True, verbose_name=u'รายละเอียด')
+    descriptions = RichTextField(blank=True, verbose_name=u'รายละเอียด')
     total_per_room = models.IntegerField(
         blank=True, null=True, default=0, verbose_name=u'จำนวนคน/ห้อง')
     is_idle = models.BooleanField(
@@ -47,7 +48,7 @@ class Trainer(models.Model):
         max_length=255, unique=True, verbose_name=u'เบอร์โทรศัพท์มือถือ')
     avatar = models.CharField(
         max_length=255, unique=True, verbose_name=u'รูปประจำตัว')
-    descriptions = models.TextField(blank=True, verbose_name=u'รายละเอียด')
+    descriptions = RichTextField(blank=True, verbose_name=u'รายละเอียด')
     active = models.BooleanField(
         choices=STATUS_CHOICES, default=False, verbose_name=u'สถานะ')
     created_at = models.DateTimeField(
@@ -73,7 +74,7 @@ class Training(models.Model):
     to_time = models.TimeField(verbose_name=u'เวลา/ถึง')
     trainer_id = models.OneToOneField(
         Trainer, on_delete=models.CASCADE, verbose_name="วิทยากร")
-    descriptions = models.TextField(blank=True, verbose_name=u'รายละเอียด')
+    descriptions = RichTextField(blank=True, verbose_name=u'รายละเอียด')
     is_complete = models.BooleanField(
         blank=True, choices=CHOICES_TRAINED, default=False, verbose_name=u'อบรมแล้ว')
     active = models.BooleanField(
@@ -119,7 +120,7 @@ class TrainingDetail(models.Model):
         blank=True, null=True, verbose_name=u'วันที่ทำการอบรม')
     training_score = models.DecimalField(
         blank=True, decimal_places=18, max_digits=44, verbose_name=u'คะแนนที่ได้')
-    descriptions = models.TextField(
+    descriptions = RichTextField(
         blank=True, verbose_name=u'รายละเอียด/เสนอแนะ')
     active = models.BooleanField(
         choices=STATUS_CHOICES, default=False, verbose_name=u'สถานะ')
@@ -140,7 +141,7 @@ class Squize(models.Model):
     training_id = models.ForeignKey(
         Training, on_delete=models.CASCADE, verbose_name="หัวข้ออบรม")
     title = models.CharField(max_length=255, verbose_name=u'หัวข้อ')
-    descriptions = models.TextField(
+    descriptions = RichTextField(
         blank=True, verbose_name=u'รายละเอียด/เสนอแนะ')
     score_length = models.DecimalField(
         decimal_places=18, max_digits=44, verbose_name=u'คะแนนเต็ม')
@@ -173,7 +174,7 @@ class ImagesSquize(models.Model):
     class Meta:
         # abstract = True
         verbose_name_plural = u'ข้อมูลรูปภาพประกอบการอบรม'
-        db_table = "tbt_imagetrainings"
+        db_table = "tbt_imagesquizes"
 
 
 class SquizeDetail(models.Model):
@@ -182,7 +183,7 @@ class SquizeDetail(models.Model):
     training_id = models.ForeignKey(
         Squize, on_delete=models.CASCADE, verbose_name="แบบทดสอบ")
     title = models.CharField(max_length=255, verbose_name=u'คำถาม')
-    descriptions = models.TextField(
+    descriptions = RichTextField(
         blank=True, verbose_name=u'รายละเอียด')
     score_length = models.DecimalField(blank=True, null=True, default=0,
                                        decimal_places=18, max_digits=44, verbose_name=u'คะแนนเต็ม')
@@ -205,7 +206,7 @@ class SquizeChoice(models.Model):
     training_id = models.ForeignKey(
         SquizeDetail, on_delete=models.CASCADE, verbose_name="คำถาม")
     title = models.CharField(max_length=255, verbose_name=u'คำตอบ')
-    descriptions = models.TextField(
+    descriptions = RichTextField(
         blank=True, verbose_name=u'รายละเอียด')
     score_length = models.DecimalField(blank=True, null=True, default=0,
                                        decimal_places=18, max_digits=44, verbose_name=u'คะแนนเต็ม')
@@ -236,7 +237,7 @@ class EmployeeTester(models.Model):
     on_date = models.DateTimeField(verbose_name=u'วันที่ทดสอบ')
     score = models.DecimalField(
         null=True, decimal_places=18, max_digits=44, default=0, verbose_name=u'คะแนนนที่ได้')
-    descriptions = models.TextField(
+    descriptions = RichTextField(
         blank=True, verbose_name=u'รายละเอียด')
     active = models.BooleanField(
         choices=STATUS_CHOICES, default=False, verbose_name=u'สถานะ')
