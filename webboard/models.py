@@ -1,6 +1,7 @@
 import uuid
 from django.db import models
 from employee.models import Profile
+from ckeditor.fields import RichTextField
 
 from master.models import STATUS_CHOICES, Categories
 
@@ -15,8 +16,7 @@ class Post(models.Model):
     created_by = models.OneToOneField(
         Profile, on_delete=models.SET_NULL, blank=True, null=True, verbose_name=u'สร้างโดย', editable=False)
     title = models.CharField(max_length=255, verbose_name=u'หัวข้อ/เรื่อง')
-    descriptions = models.RichTextField(
-        verbose_name=u'รายละเอียด/ข้อมูลเพิ่มเติม')
+    descriptions = RichTextField(verbose_name=u'รายละเอียด/ข้อมูลเพิ่มเติม')
     total_views = models.IntegerField(
         blank=True, null=True, default=0, verbose_name='จำนวนผู้อ่าน')
     total_like = models.IntegerField(
@@ -43,8 +43,7 @@ class Comment(models.Model):
         Post, on_delete=models.SET_NULL, blank=True, null=True, verbose_name=u'หัวข้อ/เรื่อง')
     comment_by = models.OneToOneField(
         Profile, on_delete=models.SET_NULL, blank=True, null=True, verbose_name=u'แสดงความคิดเห็นโดย', editable=False)
-    descriptions = models.RichTextField(
-        verbose_name=u'รายละเอียด/ข้อมูลเพิ่มเติม')
+    descriptions = RichTextField(verbose_name=u'รายละเอียด/ข้อมูลเพิ่มเติม')
     total_like = models.IntegerField(
         blank=True, null=True, default=0, verbose_name='จำนวนที่ชอบ')
     total_dislike = models.IntegerField(
@@ -69,8 +68,7 @@ class Reply(models.Model):
         Comment, on_delete=models.SET_NULL, blank=True, null=True, verbose_name=u'หัวข้อ/เรื่อง')
     reply_by = models.OneToOneField(
         Profile, on_delete=models.SET_NULL, blank=True, null=True, verbose_name=u'ตอบกลับโดย', editable=False)
-    descriptions = models.RichTextField(
-        verbose_name=u'รายละเอียด/ข้อมูลเพิ่มเติม')
+    descriptions = RichTextField(verbose_name=u'รายละเอียด/ข้อมูลเพิ่มเติม')
     total_like = models.IntegerField(
         blank=True, null=True, default=0, verbose_name='จำนวนที่ชอบ')
     total_dislike = models.IntegerField(

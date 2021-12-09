@@ -37,6 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    # add ckeditor
+    'ckeditor',
     # custimize module
     'master.apps.MasterConfig',
     'timeattendance.apps.TimeattendanceConfig',
