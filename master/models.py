@@ -36,7 +36,7 @@ class Whs(models.Model):
         auto_now=True, verbose_name=u'แก้ไขเมื่อ')
 
     def __str__(self):
-        return self.title
+        return self.id
 
     class Meta:
         # abstract = True
