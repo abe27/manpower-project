@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     'training.apps.TrainingConfig',
     'accident.apps.AccidentConfig',
     'webboard.apps.WebboardConfig',
+    'activitiescleanup.apps.ActivitiescleanupConfig',
 ]
 
 MIDDLEWARE = [

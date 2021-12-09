@@ -23,6 +23,9 @@ class Post(models.Model):
         blank=True, null=True, default=0, verbose_name='จำนวนที่ชอบ')
     total_dislike = models.IntegerField(
         blank=True, null=True, default=0, verbose_name='จำนวนที่ไม่ชอบ')
+    published_at = models.DateField(verbose_name=u'วันที่ประกาศ')
+    published = models.BooleanField(choices=[(False, 'ร่าง'), (
+        True, 'เผยแพร่')], blank=True, null=True, default=False, verbose_name=u'เผยแพร่')
     active = models.BooleanField(
         choices=STATUS_CHOICES, default=False, verbose_name=u'สถานะ')
     created_at = models.DateTimeField(

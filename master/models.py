@@ -130,7 +130,8 @@ class Organization(models.Model):
         User, on_delete=models.CASCADE, verbose_name=u'ผู้รับผิดชอบ')
     position_id = models.ForeignKey(
         Position, on_delete=models.CASCADE, verbose_name=u'ตำแหน่ง')
-    title = models.CharField(max_length=255, verbose_name=u'หัวข้อ')
+    department_id = models.ForeignKey(
+        Department, on_delete=models.CASCADE, verbose_name=u'หัวข้อ/แผนก')
     descriptions = models.TextField(
         blank=True, verbose_name=u'รายละเอียด/ข้อมูลเพิ่มเติม')
     approve_leave = models.BooleanField(choices=STATUS_APPROVE_CHOICES,
