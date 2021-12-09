@@ -35,6 +35,9 @@ class Whs(models.Model):
     updated_at = models.DateTimeField(
         auto_now=True, verbose_name=u'แก้ไขเมื่อ')
 
+    def __str__(self):
+        return self.title
+
     class Meta:
         # abstract = True
         verbose_name_plural = u'ข้อมูลคลังสินค้า'
