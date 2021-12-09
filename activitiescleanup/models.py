@@ -73,6 +73,7 @@ class ActivitiesForOrganization(models.Model):
 class ActivitiesCleanup(models.Model):
     id = models.UUIDField(
         primary_key=True, default=uuid.uuid4(), editable=False)
+    activities_date = models.DateField(verbose_name='วันที่ทำกิจกรรม')
     activities_id = models.OneToOneField(
         ActivitiesForOrganization, on_delete=models.SET_NULL, blank=True, null=True, verbose_name=u'หัวข้อ/เรื่อง')
     descriptions = models.TextField(
@@ -90,3 +91,22 @@ class ActivitiesCleanup(models.Model):
         # abstract = True
         verbose_name_plural = u'ข้อมูลการทำกิจกรรม 5 ส'
         db_table = "tbt_activitiescleanups"
+
+
+class ImagesActivites(models.Model):
+    id = models.UUIDField(
+        primary_key=True, default=uuid.uuid4(), editable=False)
+    squize_id = models.ForeignKey(
+        ActivitiesCleanup, on_delete=models.CASCADE, verbose_name=u'หัวข้อ')
+    image = models.FieldFile(verbose_name=u'รูปประกอบ')
+    active = models.BooleanField(
+        choices=STATUS_CHOICES, default=False, verbose_name=u'สถานะ')
+    created_at = models.DateTimeField(
+        auto_now_add=True, verbose_name=u'สร้างเมื่อ', editable=False)
+    updated_at = models.DateTimeField(
+        auto_now=True, verbose_name=u'แก้ไขเมื่อ')
+
+    class Meta:
+        # abstract = True
+        verbose_name_plural = u'ข้อมูลเอกสารประกอบการทำกิจกรรม 5 ส'
+        db_table = "tbt_imagesactivities"
